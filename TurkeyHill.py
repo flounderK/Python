@@ -2,7 +2,7 @@
 """
 Created on Fri Dec  1 11:50:59 2017
 
-@author: Cliff.Wolfe
+@author: Clif
 """
 
 import requests
