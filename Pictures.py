@@ -37,7 +37,7 @@ def download_images(url, session, soup, default_filetype='.jpg'):
         if extension == 'None':
             #"Image is being called with a script," +
             #" naming image after token and defaulting to jpg"
-            image_name = image_name + '.jpg'
+            image_name = image_name + default_filetype
         
         #this next chunk can be removed after error function is tested and used
         r = _session.get(imageurl, timeout = 5)
