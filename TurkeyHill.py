@@ -23,3 +23,9 @@ def query_store_services(store_number):
     return services
 #usage:
 #query_store_services('01400433')
+def convert_to_list(services_string):
+    k = re.findall('(?<=")[^"]+(?=":true)', 
+                   query_store_services(services_string))
+    return k
+#usage:
+#convert_to_list(query_store_services('01400433'))
