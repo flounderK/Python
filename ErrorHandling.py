@@ -2,7 +2,7 @@
 """
 Created on Wed Nov 22 13:17:59 2017
 
-@author: Cliff.Wolfe
+@author: Clif
 """
 
 import requests
@@ -12,7 +12,7 @@ url = 'https://www.turkeyhillstores.com/storeHours'
 
 s = requests.session()
 
-def get_retry(session, url, max_retries, *args, **kwargs):
+def get_retry(session, url, max_retries=5, *args, **kwargs):
     
     _url = url
     s = session
@@ -42,5 +42,5 @@ def get_retry(session, url, max_retries, *args, **kwargs):
     
     return r
 
-get_retry(s, url, 2)
-get_retry(s, url, 2, timeout=5)
+#get_retry(s, url, 2)
+#get_retry(s, url, 2, timeout=5)
