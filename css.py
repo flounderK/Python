@@ -4,7 +4,7 @@ Created on Mon Nov 13 10:54:37 2017
 
 @author: Cliff.Wolfe
 """
-
+#TODO: rewrite to improve parameter names, fix url_base, and make the regex match oddly written paths
 import requests
 from bs4 import BeautifulSoup
 import re
