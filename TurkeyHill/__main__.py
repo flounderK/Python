@@ -70,20 +70,25 @@ def main():
                                      "services each store offers")
     parser.add_argument("-f",
                         "--filename",
-                        help="Excel Filename in which a list of store " +  
+                        help="Filename in which a list of store " +  
                         "numbers is listed and the services that you " +
                         "wish to track are column names",
                         required=True)
     
     parser.add_argument("-s",
-                        "--store_number_column",
+                        "--storeNumberColumn",
                         help="Name of the column that contains " +
                         "store numbers. By default it is set to DIVSTORE",
                         required=False)
     parser.add_argument("-o",
-                        "--output",
+                        "--outputFile",
                         help="Name of the excel document to be outputted. "+
-                        "By default, it is set to 'output'",
+                        "By default, it is set to 'output.xlsx'",
+                        required=False)
+    parser.add_argument("-inf",
+                        "--inputFormat",
+                        help="File format that the input file." +
+                        "Default is set to __",
                         required=False)
     
     args = parser.parse_args()
