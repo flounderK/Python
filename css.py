@@ -16,11 +16,9 @@ def get_css(soup, session, url_base):
     i = 0
     for link in css_links:
         
-        link['href'] = re.sub("\.\.\/", "", link['href'])
-        if link['href'][0] == '/':
-            link['href'] = link['href'][1:]
-    
-        
+        if link['href'][0] != '/':
+            link['href'] = "/" + link['href']
+
         file_location = url_base + link['href']
         
         r = session.get(file_location)
@@ -35,7 +33,8 @@ def get_css(soup, session, url_base):
     return css_links
 
 def get_url_base(url):
-    base = re.match("(\w){,}://[(\w)(\W)]{,}/", url)[0]
+    #return first part of url, no forward slash at the end
+    base = re.match("(\w+://|[^/])[^/]+(?=/)*", url)[0]
     return base
 
 
