@@ -1,16 +1,19 @@
 
 import requests
 
-def get_retry(url, max_retries=10, *args, **kwargs):
+def get_retry(url, max_retries=10, session=None, **kwargs):
     
     _url = url
-    
     _max_retries = max_retries
+    if session != None:
+        s=session
+    else:
+        s=requests.session()
     retries = 0
     finished = False
     while finished != True:
         try:
-            r = requests.get(_url, **kwargs)
+            r = s.get(_url, **kwargs)
             
         except requests.ConnectionError as e: 
             print("No response")
