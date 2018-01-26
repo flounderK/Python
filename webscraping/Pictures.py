@@ -4,12 +4,13 @@ Created on Wed Dec  6 17:20:49 2017
 
 @author: Clif
 """
+#TODO: Allow user to specify where images are downloaded to
 from bs4 import BeautifulSoup
 import requests
 import re
 
 def get_retry(url, max_retries=10, session=None, **kwargs):
-
+    """requests.get but it retries the request a specified number of times"""
     _url = url
     _max_retries = max_retries
     if session != None:
@@ -45,7 +46,7 @@ def get_retry(url, max_retries=10, session=None, **kwargs):
 
 #start of function
 def download_images(url, session, soup, default_filetype='.jpg', **kwargs):
-
+    """Finds all img tags on a website and downloads the pictures"""
     #regex compiled ahead of time
     base_url_regex = re.compile("(\w+://|[^/])[^/]+")
     img_name_regex = re.compile("(?<=/)[^/]+$")
