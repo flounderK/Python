@@ -4,7 +4,8 @@ Created on Wed Dec  6 17:20:49 2017
 
 @author: Clif
 """
-#TODO: Allow user to specify where images are downloaded to
+#TODO: Allow user to specify where images are downloaded to, Determine if urllib.parse.urljoin is more efficient than 
+#url joining if statements at line 60
 from bs4 import BeautifulSoup
 import requests
 import re
