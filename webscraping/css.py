@@ -8,29 +8,31 @@ Created on Mon Nov 13 10:54:37 2017
 import requests
 from bs4 import BeautifulSoup
 import re
+from urllib.parse import urljoin
 
-
-def get_css(soup, session, url_base):
-    
+def get_css(soup, session, url):
     css_links = soup.find_all("link", attrs={"type": "text/css"})
-    i = 0
+    filename_regex = re.compile("(?<=/)[^/]+$")
+    ext_regex = re.compile("\.[^$]{3,4}$")
     for link in css_links:
-        
-        if link['href'][0] != '/':
-            link['href'] = "/" + link['href']
-
-        file_location = url_base + link['href']
-        
+        if link['href'][0:1] == '//':
+            file_location = link['href']
+        else:
+            file_location = urljoin(url, link['href'])
         r = session.get(file_location)
         if r.status_code == 200:
-            new_filename = "css" + str(i) + ".css"
-            with open(new_filename, 'wb') as f:
-                f.write(r.content) 
-        
-        link['href'] = new_filename
-        i = i+1
-   
-    return css_links
+            extension = re.search(ext_regex, link['href'])
+            filename = re.search(filename_regex, link['href'])[0]
+            if '?' in filename:
+                filename =filename.split('?')[-1]
+            if extension == 'None':
+                filename = filename + ".css"
+            with open(filename, 'wb') as f:
+                f.write(r.content)
+
+        link['href'] = filename
+
+#    return css_links
 
 def get_url_base(url):
     #return first part of url, no forward slash at the end
@@ -39,9 +41,8 @@ def get_url_base(url):
 
 
 
-#url = 'http://srvsp01:8020/configurations.do'
-#s = requests.session()
-#r = s.get(url)
-#soup = BeautifulSoup(r.content, "lxml")
-#url_base = get_url_base(url)
-#get_css(soup, s, url_base)
+# url = 'http://www.uc.edu'
+# s = requests.session()
+# r = s.get(url)
+# soup = BeautifulSoup(r.content, "lxml")
+# get_css(soup=soup, session=s, url=url)
