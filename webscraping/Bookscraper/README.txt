@@ -22,6 +22,10 @@ PyPDF2 also has a dependency on wkhtmltopdf 0.13, which can be found at
 https://wkhtmltopdf.org/downloads.html
 (Windows (MSVC 2013) 64-bit) under bleeding edge releases.
 
+Please note that for the code to run correctly you must have full access to safaribooksonline.
+For the most part that means either a VPN to a school's network or actually being on the school's 
+network
+
 Usage:
 python BookScraper.py -u <url>
 where <url> is the url for the cover page of the textbook on safaribooksonline
