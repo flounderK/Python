@@ -88,6 +88,7 @@ def download_images(url, session, soup, path=None, default_filetype='.jpg', **kw
             #Image is most likely being called with a script,
             #default to a different filetype
             image_name = image_name + default_filetype
+        image_name = os.path.join(file_path,image_name)
         r = get_retry(session=session, url=imageurl, timeout = 5, **kwargs)
         if r.status_code == 200:
             with open(image_name, 'wb') as f:
@@ -99,7 +100,7 @@ def download_images(url, session, soup, path=None, default_filetype='.jpg', **kw
 
     print("Images downloaded:")
     for name in name_list:
-        print name
+        print(name)
 
 
 if __name__ == '__main__':
